@@ -2,6 +2,15 @@ import { useState, useEffect, useRef } from 'react'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from 'firebase/storage'
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
+import { db } from '../firebase.config'
+import { v4 as uuidv4 } from 'uuid'
 import Spinner from '../components/Spinner'
 
 function CreateListing() {
@@ -81,9 +90,71 @@ function CreateListing() {
       lat: latitude,
       lng: longitude,
     }
-    let location = address
+
+    // Storing the uploaded images in the firebase storage
+    const storeImage = async (image) => {
+      return new Promise((resolve, reject) => {
+        const storage = getStorage()
+        const fileName = `${auth.currentUser.uid}-${image.name}-${uuidv4()}`
+
+        const storageRef = ref(storage, 'images/' + fileName)
+
+        const uploadTask = uploadBytesResumable(storageRef, image)
+
+        uploadTask.on(
+          'state_changed',
+          (snapshot) => {
+            switch (snapshot.state) {
+              case 'paused':
+                console.log('Upload is paused')
+                break
+              case 'running':
+                console.log('Upload is running')
+                break
+            }
+          },
+          (error) => {
+            reject(error)
+          },
+          () => {
+            // Handling successful uploads on complete
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+              console.log('Upload is finished')
+              resolve(downloadURL)
+            })
+          }
+        )
+      })
+    }
+
+    const imgUrls = await Promise.all(
+      [...images].map((image) => storeImage(image))
+    ).catch(() => {
+      setLoading(false)
+      toast.error('Something went wrong during uploading images')
+      return
+    })
+
+    const formDataCopy = {
+      ...formData,
+      imgUrls,
+      geolocation,
+      location: address,
+      timestamp: serverTimestamp(),
+    }
+
+    // Deleting the not necessary fields
+    delete formDataCopy.images
+    delete formDataCopy.address
+    !formDataCopy.offer && delete formDataCopy.discountedPrice
+
+    // Adding the current listing document to the 'listings' collection in the cloud firestore
+    const docRef = await addDoc(collection(db, 'listings'), formDataCopy)
 
     setLoading(false)
+    toast.success('Listing saved successfully')
+
+    navigate(`/category/${formDataCopy.type}/${docRef.id}`)
   }
 
   const onMutate = (e) => {
