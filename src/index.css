@@ -594,6 +594,11 @@ button {
   font-size: 1.2rem;
 }
 
+.landlordEmail {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
 .messageForm {
   margin-top: 0.5rem;
 }
@@ -607,6 +612,7 @@ button {
 
 .messageLabel {
   margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
 .profile {

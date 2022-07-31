@@ -7,6 +7,8 @@ import Explore from './pages/Explore'
 import Offers from './pages/Offers'
 import Category from './pages/Category'
 import CreateListing from './pages/CreateListing'
+import Listing from './pages/Listing'
+import Contact from './pages/Contact'
 import Profile from './pages/Profile'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
@@ -21,6 +23,11 @@ function App() {
           <Route path='/offers' element={<Offers />} />
           <Route path='/category/:categoryName' element={<Category />} />
           <Route path='/create-listing' element={<CreateListing />} />
+          <Route
+            path='/category/:categoryName/:listingId'
+            element={<Listing />}
+          />
+          <Route path='/contact/:landlordId' element={<Contact />} />
           <Route path='/profile' element={<PrivateRoute />}>
             <Route path='/profile' element={<Profile />} />
           </Route>
