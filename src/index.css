@@ -380,9 +380,9 @@ button {
 
 .exploreCategoryImg {
   min-height: 115px;
-  height: 15vw;
+  height: 18vw;
   width: 100%;
-  border-radius: 1.5rem;
+  border-radius: 1.3rem;
   object-fit: cover;
   margin: 0 auto;
 }
@@ -414,8 +414,8 @@ button {
 
 .categoryListingImg {
   width: 30%;
-  height: 100px;
-  border-radius: 1.5rem;
+  height: auto;
+  border-radius: 1.3rem;
   object-fit: cover;
 }
 @media (min-width: 1024px) {
@@ -436,14 +436,14 @@ button {
 
 .categoryListingLocation {
   font-weight: 600;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   opacity: 0.8;
   margin-bottom: 0;
 }
 
 .categoryListingName {
   font-weight: 600;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   margin: 0;
 }
 
@@ -465,7 +465,7 @@ button {
 
 .categoryListingInfoText {
   font-weight: 500;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
 }
 
 .loadMore {

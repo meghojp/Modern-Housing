@@ -81,6 +81,7 @@ function Profile() {
 
         <div className='profileCard'>
           <form>
+            <label htmlFor='name'>Name</label>
             <input
               type='text'
               id='name'
@@ -89,6 +90,7 @@ function Profile() {
               value={name}
               onChange={onChange}
             />
+            <label htmlFor='email'>Email</label>
             <input
               type='text'
               id='email'
