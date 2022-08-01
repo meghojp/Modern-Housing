@@ -555,6 +555,11 @@ button {
   overflow-x: hidden;
   margin-bottom: 3rem;
 }
+@media (min-width: 768px) {
+  .leafletContainer {
+    height: 250px;
+  }
+}
 @media (min-width: 1024px) {
   .leafletContainer {
     height: 400px;

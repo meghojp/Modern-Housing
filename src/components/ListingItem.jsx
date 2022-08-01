@@ -54,7 +54,7 @@ function ListingItem({ listing, id, onDelete }) {
   )
 }
 
-function formatMoney(price) {
+export const formatMoney = function (price) {
   const formatter = Intl.NumberFormat('en-IN', {
     style: 'currency',
     currency: 'INR',
