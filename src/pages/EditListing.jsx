@@ -226,7 +226,7 @@ function EditListing() {
   return (
     <div className='profile'>
       <header>
-        <p className='pageHeader'>Edit Listing</p>
+        <p className='pageHeader'>Edit Details of the Property</p>
       </header>
 
       <main>
@@ -451,7 +451,7 @@ function EditListing() {
             required
           />
           <button type='submit' className='primaryButton createListingButton'>
-            Edit Listing
+            Save
           </button>
         </form>
       </main>

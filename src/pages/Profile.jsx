@@ -114,7 +114,7 @@ function Profile() {
   return (
     <div className='profile'>
       <header className='profileHeader'>
-        <p className='pageHeader'>My Profile</p>
+        <p className='pageHeader'>Your Profile</p>
         <button type='button' className='logOut' onClick={onLogout}>
           Logout
         </button>
@@ -165,7 +165,7 @@ function Profile() {
 
         {!loading && listings?.length > 0 && (
           <>
-            <p className='listingText'>Your Listings</p>
+            <p className='listingText'>Your Properties :</p>
             <ul className='listingsList'>
               {listings.map((listing) => (
                 <ListingItem

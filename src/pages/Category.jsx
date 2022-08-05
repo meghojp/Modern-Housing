@@ -100,8 +100,8 @@ function Category() {
       <header>
         <p className='pageHeader'>
           {params.categoryName === 'rent'
-            ? 'Places for Rent'
-            : 'Places for Sale'}
+            ? 'Properties for Rent'
+            : 'Properties for Sale'}
         </p>
       </header>
 
@@ -131,7 +131,11 @@ function Category() {
           )}
         </>
       ) : (
-        <p>Sorry, no listings available for {params.categoryName}</p>
+        <p>
+          Sorry, currently there are no available properties for{' '}
+          {params.categoryName[0].toUpperCase() +
+            params.categoryName.substring(1)}
+        </p>
       )}
     </div>
   )

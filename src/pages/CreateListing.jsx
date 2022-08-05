@@ -192,7 +192,7 @@ function CreateListing() {
   return (
     <div className='profile'>
       <header>
-        <p className='pageHeader'>Create a Listing</p>
+        <p className='pageHeader'>Post your Property</p>
       </header>
 
       <main>
@@ -417,7 +417,7 @@ function CreateListing() {
             required
           />
           <button type='submit' className='primaryButton createListingButton'>
-            Create Listing
+            Add the Property
           </button>
         </form>
       </main>
